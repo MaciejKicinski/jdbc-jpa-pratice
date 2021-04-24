@@ -17,14 +17,16 @@ public class JdbcTest {
 
     @Test
     public void testOfAddEmployee() {
-        Employee maciek = new Employee();
-        Employee ewelina = new Employee();
-        maciek.setName("Maciek");
-        maciek.setLastName("Kici");
-        maciek.setJob("inzynier");
-        ewelina.setName("Ewelina");
-        ewelina.setLastName("Haj");
-        ewelina.setJob("marimbioloczystka");
+        Employee maciek = new Employee.Builder()
+                .name("Maciek")
+                .lastName("Kici")
+                .job("inzynier")
+                .build();
+        Employee ewelina = new Employee.Builder()
+                .name("Ewelina")
+                .lastName("Haj")
+                .job("marimbioloczystka")
+                .build();
         EmployeeDAO employeeDAO = new EmployeeDAO();
         employeeDAO.addEmployee(maciek);
         employeeDAO.addEmployee(ewelina);
@@ -41,10 +43,11 @@ public class JdbcTest {
     @Test
     public void testOfUpdateEmployee() {
         EmployeeDAO employeeDAO = new EmployeeDAO();
-        Employee maciek = new Employee();
-        maciek.setName("Maciek");
-        maciek.setLastName("Kici");
-        maciek.setJob("programista");
+        Employee maciek = new Employee.Builder()
+                .name("Maciek")
+                .lastName("Kici")
+                .job("programista")
+                .build();
         employeeDAO.updateEmployee(maciek, 1);
         testOfgetEmployeeById();
     }

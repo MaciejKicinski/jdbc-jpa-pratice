@@ -3,16 +3,53 @@ package jdbc;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 
-@Builder
-@AllArgsConstructor
+
 public class Employee {
     Integer id;
     String name;
     String lastName;
     String job;
 
-    public Employee() {
+   private Employee(Integer id, String name, String lastName, String job) {
+        this.id = id;
+        this.name = name;
+        this.lastName = lastName;
+        this.job = job;
     }
+
+    public static class Builder{
+       private Integer id;
+        private String name;
+        private String lastName;
+        private String job;
+
+        public Builder() {
+        }
+
+        public Employee build() {
+            return new Employee(id, name, lastName, job);
+        }
+        public Builder id(Integer id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder name(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder lastName(String lastName) {
+            this.lastName = lastName;
+            return this;
+        }
+
+        public Builder job(String job) {
+            this.job = job;
+            return this;
+        }
+    }
+
 
     public Integer getId() {
         return id;

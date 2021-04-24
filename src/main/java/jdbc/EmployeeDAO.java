@@ -14,7 +14,7 @@ public class EmployeeDAO {
             Statement statement = connection.createStatement();
             ResultSet rSet = statement.executeQuery("SELECT * FROM employee");
             while (rSet.next()) {
-                employeeList.add(Employee.builder().id(rSet.getInt("id"))
+                employeeList.add(new Employee.Builder().id(rSet.getInt("id"))
                         .name(rSet.getString("emp_name"))
                         .lastName(rSet.getString("emp_lastname"))
                         .job(rSet.getString("emp_job")).build());
@@ -67,7 +67,7 @@ public class EmployeeDAO {
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                return Employee.builder()
+                return new Employee.Builder()
                         .id(rs.getInt("id"))
                         .name(rs.getString("emp_name"))
                         .lastName(rs.getString("emp_lastname"))
